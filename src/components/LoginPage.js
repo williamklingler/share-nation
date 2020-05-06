@@ -5,3 +5,5 @@ class LoginPage extends React.Component {
     return <h1>Hello, my name is Alex and I am a big dick nigga!!!</h1>;
   }
 }
+
+export default LoginPage;
