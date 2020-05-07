@@ -13,9 +13,8 @@ class HomePage extends React.Component {
       <div>
       <h1> Welcome to Simp Nation </h1>
       <p> we will fulfill all of your simping needs </p>
-
-      <li>
-              <Link to="/login">Login</Link>
+        <li>
+            <Link to="/login">Login</Link>
         </li>
       </div>
     )
