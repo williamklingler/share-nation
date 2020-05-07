@@ -1,9 +1,23 @@
 import React from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 
 class HomePage extends React.Component {
   render() {
     return (
-      <h1> Homepage </h1>
+      <div>
+      <h1> Welcome to Simp Nation </h1>
+      <p> we will fulfill all of your simping needs </p>
+
+      <li>
+              <Link to="/login">Login</Link>
+        </li>
+      </div>
     )
   }
 }
