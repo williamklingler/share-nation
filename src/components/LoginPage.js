@@ -4,20 +4,20 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import firebaseConfig from '../firebaseConfig';
-import * as firebaseui from 'firebaseui';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
-firebase.initializeApp(firebaseConfig);
+//firebase.initializeApp(firebaseConfig);
 // Initialize the FirebaseUI Widget using Firebase.
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
+/*var ui = new firebaseui.auth.AuthUI(firebase.auth());
 ui.start('#firebaseui-auth-container', {
   signInOptions: [
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
     firebase.auth.GoogleAuthProvider.PROVIDER_ID
   ],
   // Other config options...
-});
+});*/
 
-var uiConfig = {
+/*var uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: function(authResult, redirectUrl) {
       // User successfully signed in.
@@ -40,14 +40,30 @@ var uiConfig = {
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.EmailAuthProvider.PROVIDER_ID
   ],
+};*/
+
+const uiConfig = {
+  // Popup signin flow rather than redirect flow.
+  signInFlow: 'popup',
+  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
+  signInSuccessUrl: 'signedIn',
+  // We will display Google and Facebook as auth providers.
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
+  ],
+  /*callbacks: {
+      // Avoid redirects after sign-in.
+      signInSuccessWithAuthResult: () => false
+    }*/
 };
 
 class LoginPage extends React.Component {
   constructor(props){
     super(props);
-    this.state={username:'', password:''};
+    this.state={username:'', password:'',signedIn: false};
   }
-  componentDidMount(){
+  /*componentDidMount(){
     ui.start('#firebaseui-auth-container', uiConfig);
   }
   submitUserPass = (event) =>{
@@ -61,7 +77,8 @@ class LoginPage extends React.Component {
     else{
       this.setState({username: event.target.value});
     }
-  }
+  }*/
+
   render() {
     return (
 <div>
@@ -77,9 +94,10 @@ class LoginPage extends React.Component {
     </form>
     <p> {this.state.username} </p>
     <p> {this.state.password} </p>
-  </div>*/}
+  </div>
   <div id="firebaseui-auth-container"></div>
-  <div id="loader">Loading...</div>
+  <div id="loader">Loading...</div>*/}
+  <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
 </div> )
   }
 }
