@@ -9,6 +9,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import authContext from './authentication-context.js';
 
 import * as firebase from "firebase/app";
 import "firebase/auth";
@@ -21,37 +22,35 @@ firebase.initializeApp(firebaseConfig);
 class App extends React.Component {
   constructor(props){
     super(props);
-    this.state={signedIn:false};
+    this.state={signedIn:'not', user: null};
   }
-
-  componentWillMount(){
-    firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      this.setState({signedIn:true});
-      alert('user signed in');
-    } else {
-      this.setState({signedIn:false});
-      alert('user not signed in');
-    }
-  });
-}
+componentDidMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({signedIn: '',user: user})
+      }
+    })
+  }
   render(){
     return (
       <Router>
-      <div>
+    <div>
       <Switch>
         <Route path="/login">
           <LoginPage />
         </Route>
         <Route path="/signedIn">
-          <SignedIn signedIn = {this.state.signedIn} />
+          <authContext.Provider value={this.state}>
+            <SignedIn />
+          </authContext.Provider>
         </Route>
-         <Route path="/">
-           <HomePage/>
-         </Route>
-       </Switch>
-     </div>
-   </Router>
+        {/*<Route path="/signedIn" render={ (props)=> <authContext.Provider value ={this.state}> <SignedIn {...props} /> </authContext.Provider> } />*/}
+        <Route path="/">
+          <HomePage />
+        </Route>
+      </Switch>
+    </div>
+  </Router>
     );
   }
 }

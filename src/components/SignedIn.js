@@ -1,5 +1,6 @@
 import React from 'react'
 import * as firebase from "firebase/app";
+import authContext from '../authentication-context.js'
 
 class SignedIn extends React.Component{
   constructor(props){
@@ -11,9 +12,13 @@ class SignedIn extends React.Component{
   }
   render(){
     return(
-      <h1> You are {this.state.signedIn} signed in</h1>
+      <div>
+        <h1> You are {this.context.signedIn} signed in</h1>
+        <p> {JSON.stringify(this.context.user)} </p>
+      </div>
     )
   }
 }
+SignedIn.contextType = authContext;
 
 export default SignedIn;
