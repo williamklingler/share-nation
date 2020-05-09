@@ -22,12 +22,12 @@ firebase.initializeApp(firebaseConfig);
 class App extends React.Component {
   constructor(props){
     super(props);
-    this.state={signedIn:'not', user: null};
+    this.state={ user: null};
   }
 componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({signedIn: '',user: user})
+        this.setState({user: user})
       }
     })
   }

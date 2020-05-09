@@ -13,8 +13,11 @@ class SignedIn extends React.Component{
   render(){
     return(
       <div>
-        <h1> You are {this.context.signedIn} signed in</h1>
-        <p> {JSON.stringify(this.context.user)} </p>
+        <h1> You are {!this.context.user && <div>not</div>} signed in</h1>
+        {this.context.user && <p> Welcome {this.context.user.displayName}! </p> }
+        <p> This is all the info we have about you right now:
+        <br/> <br/> {JSON.stringify(this.context.user)}
+         </p>
       </div>
     )
   }
