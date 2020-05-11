@@ -1,0 +1,21 @@
+[debug] [2020-05-10T20:11:27.930Z] ----------------------------------------------------------------------
+[debug] [2020-05-10T20:11:27.932Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\kling\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init functions
+[debug] [2020-05-10T20:11:27.932Z] CLI Version:   8.0.3
+[debug] [2020-05-10T20:11:27.932Z] Platform:      win32
+[debug] [2020-05-10T20:11:27.932Z] Node Version:  v12.16.1
+[debug] [2020-05-10T20:11:27.933Z] Time:          Sun May 10 2020 16:11:27 GMT-0400 (Eastern Daylight Time)
+[debug] [2020-05-10T20:11:27.933Z] ----------------------------------------------------------------------
+[debug] [2020-05-10T20:11:27.933Z] 
+[debug] [2020-05-10T20:11:27.940Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-05-10T20:11:27.940Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\kling\simp\simp-nation
+

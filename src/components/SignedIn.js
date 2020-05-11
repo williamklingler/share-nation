@@ -8,7 +8,7 @@ class SignedIn extends React.Component{
     this.state = {apiResponse: null};
   }
   callAPI() {
-    fetch("https://us-central1-simp-nation.cloudfunctions.net/simpAPI")
+    fetch("'https://us-central1-simp-nation.cloudfunctions.net/simpAPI'")
         .then(res => res.text())
         .then(res => this.setState({ apiResponse: res }));
 }
