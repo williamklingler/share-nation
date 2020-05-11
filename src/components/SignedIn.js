@@ -1,6 +1,6 @@
 import React from 'react'
-import * as firebase from "firebase/app";
 import authContext from '../authentication-context.js'
+import Trending from './Trending.js';
 
 class SignedIn extends React.Component{
   constructor(props){
@@ -8,12 +8,12 @@ class SignedIn extends React.Component{
     this.state = {apiResponse: null};
   }
   callAPI() {
-    fetch("'https://us-central1-simp-nation.cloudfunctions.net/simpAPI'")
+    fetch("https://us-central1-simp-nation.cloudfunctions.net/simpAPI")
         .then(res => res.text())
         .then(res => this.setState({ apiResponse: res }));
 }
 
-componentWillMount() {
+componentDidMount() {
     this.callAPI();
 }
   render(){
@@ -25,6 +25,7 @@ componentWillMount() {
         <p> This is all the info we have about you right now:
         <br/> <br/> {JSON.stringify(this.context.user)}
          </p>
+         <Trending duration={86400000} />
       </div>
     )
   }
