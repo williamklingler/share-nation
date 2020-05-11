@@ -12,7 +12,6 @@ class Trending extends React.Component{
         .then(res => res.json())
         .then((data) => {
           this.setState({ posts: data.posts, postQuantity: data.quantity})
-          alert('there was a call to the api');
         })
         .catch(console.log)
   }
@@ -27,7 +26,7 @@ class Trending extends React.Component{
     }
     return(
       <div>
-    <h1> Trending {this.props.duration} </h1>
+    <h1> Trending in the past {this.props.duration/(60*60*1000)} hrs </h1>
     {posts}
   </div>
     );

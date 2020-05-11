@@ -11,13 +11,10 @@ import {
 } from "react-router-dom";
 import authContext from './authentication-context.js';
 
-import * as firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
-import firebaseConfig from './firebaseConfig';
-
-firebase.initializeApp(firebaseConfig);
-
+//import * as firebase from "firebase/app";
+//import "firebase/auth";
+//import "firebase/firestore";
+import firebase from './firebaseConfig';
 
 class App extends React.Component {
   constructor(props){

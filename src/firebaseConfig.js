@@ -1,3 +1,5 @@
+import * as firebase from "firebase/app";
+
 const config = {
     apiKey: "AIzaSyCom7f-oJOQAzjlT59Q7BvK2CvRRV3Bm78",
     authDomain: "simp-nation.firebaseapp.com",
@@ -9,4 +11,5 @@ const config = {
     measurementId: "G-HR1HFC7ZEY"
   };
 
-  export default config;
+  firebase.initializeApp(config);
+  export default firebase;
