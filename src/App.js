@@ -10,10 +10,6 @@ import {
   Link
 } from "react-router-dom";
 import authContext from './authentication-context.js';
-
-//import * as firebase from "firebase/app";
-//import "firebase/auth";
-//import "firebase/firestore";
 import firebase from './firebaseConfig';
 
 class App extends React.Component {
@@ -22,11 +18,14 @@ class App extends React.Component {
     this.state={ user: null};
   }
 componentDidMount() {
-    firebase.auth().onAuthStateChanged((user) => {
+    this.firebaseListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({user: user})
       }
     })
+  }
+  componentWillUnmount(){
+    this.fireBaseListener && this.fireBaseListener();
   }
   render(){
     return (
@@ -38,10 +37,9 @@ componentDidMount() {
         </Route>
         <Route path="/signedIn">
           <authContext.Provider value={this.state}>
-            <SignedIn />
+            {this.state.user && <SignedIn />}
           </authContext.Provider>
         </Route>
-        {/*<Route path="/signedIn" render={ (props)=> <authContext.Provider value ={this.state}> <SignedIn {...props} /> </authContext.Provider> } />*/}
         <Route path="/">
           <HomePage />
         </Route>
