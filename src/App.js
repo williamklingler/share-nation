@@ -18,12 +18,19 @@ class App extends React.Component {
     this.state={ user: null};
   }
 componentDidMount() {
-    this.firebaseListener = firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({user: user})
-      }
-    })
-  }
+  this.firebaseListener = firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      this.setState({
+        user: user
+      });
+      firebase.auth().currentUser.getIdToken(true).then((idToken) => {
+        this.setState({userIDToken: idToken});
+      }).catch(function(error) {
+        console.log(error);
+      });
+    }
+  })
+}
   componentWillUnmount(){
     this.fireBaseListener && this.fireBaseListener();
   }

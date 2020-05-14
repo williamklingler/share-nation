@@ -25,7 +25,9 @@ componentDidMount() {
         <p> This is all the info we have about you right now:
         <br/> <br/> {JSON.stringify(this.context.user)}
          </p>
-         <Trending duration={86400000} />
+         <div style ={{padding: '0vw 13vw 0vw 13vw'}}>
+         <Trending duration={3*86400000} />
+         </div>
       </div>
     )
   }

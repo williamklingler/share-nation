@@ -4,7 +4,7 @@ import authContext from '../authentication-context.js'
 
 const db = new firebase.firestore();
 
-var som = db.collection('posts').doc('Lf7Knc7WOR8RVvoVcGyb').get()
+/*var som = db.collection('posts').doc('Lf7Knc7WOR8RVvoVcGyb').get()
 .then(doc =>{
   if(!doc.exists){
     console.log('no such doc exists');
@@ -13,72 +13,64 @@ var som = db.collection('posts').doc('Lf7Knc7WOR8RVvoVcGyb').get()
     console.log('we sucessfully got the doc');
   }
 })
-.catch(err => console.log(err));
+.catch(err => console.log(err));*/
+
+
 
 class Post extends React.Component{
-  constructor(props,context){
-    super(props,context);
-      if(this.props.content.likedUsers.find((element) =>{
-        return element === this.context.user.uid;
-      }) === undefined){
-        this.state = {liked: false, likes: this.props.content.likes};
-      }
-      else{
-        this.state = {liked: true, likes: this.props.content.likes};
-      }
+  constructor(props, context) {
+  super(props, context);
+  if (this.props.content.likedUsers.find((element) => {
+      return element === this.context.user.uid;
+    }) === undefined) {
+    this.state = {
+      liked: false,
+      likes: this.props.content.likes
+    };
+  } else {
+    this.state = {
+      liked: true,
+      likes: this.props.content.likes
+    };
   }
-  like = () => {
+}
+like = () => {
+  var payload = {
+    userIDToken: this.context.userIDToken,
+    likedPostID: this.props.content.postID,
+    action: 'toggle like on a post'
+  };
+  fetch('https://us-central1-simp-nation.cloudfunctions.net/postsAPI', { //'https://us-central1-simp-nation.cloudfunctions.net/postsAPI'
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  }).then((res) => {
+  });
   if (!this.state.liked) {
     this.setState({
       likes: ++this.state.likes,
       liked: true
     });
-    db.collection('users').doc(this.context.user.uid)
-      .update({
-        likedPosts: firebase.firestore.FieldValue.arrayUnion(
-          this.props.content.postID
-        )
-      });
-    db.collection('posts').doc(this.props.content.postID)
-      .update({
-        likes: this.state.likes,
-        likedUsers: firebase.firestore.FieldValue.arrayUnion(
-          this.context.user.uid
-        )
-      });
-
-  }
-  else{
+  } else {
     this.setState({
       likes: --this.state.likes,
       liked: false
     });
-    db.collection('users').doc(this.context.user.uid)
-      .update({
-        likedPosts: firebase.firestore.FieldValue.arrayRemove(
-          this.props.content.postID
-        )
-      });
-    db.collection('posts').doc(this.props.content.postID)
-      .update({
-        likes: this.state.likes,
-        likedUsers: firebase.firestore.FieldValue.arrayRemove(
-          this.context.user.uid
-        )
-      });
   }
 }
   render(){
-    var h = {name: 1}
-    h.sign = 3;
+    var date = new Date(this.props.content.date);
     return(
-      <div>
-      <p> {Date(this.props.content.date).toString()} </p>
-      <h2> {this.props.content.title} </h2>
-      <br/><br/>
-      <p> {this.props.content.main} </p>
+      <div style = {{backgroundColor: '#fe7400', border: '1px', borderStyle: 'solid', paddingLeft: '3vw'}}>
+      <p style = {{padding: '0px', margin: '0px', fontFamily: 'Playfair Display'}}> {date.toLocaleString()} </p>
+      <h2 style = {{padding: '10px,10px,10px,0px', margin: '0px',
+       color: '#1d00fe', fontFamily: 'Playfair Display'}}> {this.props.content.title} </h2><br/>
+      <p style = {{padding: '0px', margin: '0px', color: '#fe0000', fontFamily: 'Montserrat'}}> {this.props.content.main} </p>
       {this.state.liked && <button style = {{backgroundColor: 'pink'}} onClick = {this.like}> ❤️ Likes: {this.state.likes} </button>}
       {!this.state.liked && <button onClick = {this.like}> ❤️ Likes: {this.state.likes} </button>}
+      <br/><br/>{/*<hr style ={{margin:0, padding:0}}/>*/}
       </div>
     );
   }

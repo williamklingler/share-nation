@@ -8,7 +8,7 @@ class Trending extends React.Component{
     this.state = {posts:null, postQuantity: 0};
   }
   callPostsAPI (){
-    fetch("https://us-central1-simp-nation.cloudfunctions.net/postsAPI?duration="+this.props.duration)
+    fetch("https://us-central1-simp-nation.cloudfunctions.net/postsAPI?duration="+this.props.duration) //"https://us-central1-simp-nation.cloudfunctions.net/postsAPI?duration="
         .then(res => res.json())
         .then((data) => {
           this.setState({ posts: data.posts, postQuantity: data.quantity})
@@ -22,12 +22,21 @@ class Trending extends React.Component{
     let posts = [];
     posts.push(<div key = {-1}></div>);
     for(let i = 0; i < this.state.postQuantity; ++i){
-      posts.push(<Post key={i} content = {this.state.posts[i]} />);
+      posts.push(<div style = {{padding: '0vw 20vw 0vw 20vw'}}> <Post key={i} content = {this.state.posts[i]} /> </div>);
     }
+    // display: 'flex',
+    // margin: 'auto', textAlign: 'center'
     return(
-      <div>
-    <h1> Trending in the past {this.props.duration/(60*60*1000)} hrs </h1>
+      <div  style = {{backgroundColor: '#fe0000'}} >
+      <section style = {{backgroundColor: '#fe0000', color: '#1d00fe', fontFamily: 'Playfair Display',
+    paddingLeft: '5vw', height: '9.5vh', lineHeight:'8.5vh'}}>
+    <h1 style = {{display: 'inline-block', verticalAlign: 'middle',
+     lineHeight: 'normal', border: '1px', borderStyle: 'solid', padding: '1.5vh 20.5vh 1.5vh 10.5vh', margin: 0}}>
+    Posts from the last {this.props.duration/(60*60*1000)} hrs </h1>
+      </section>
+      <div style = {{paddingBottom: '5vh'}} >
     {posts}
+    </div>
   </div>
     );
   }
