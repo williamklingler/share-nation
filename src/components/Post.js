@@ -63,7 +63,7 @@ like = () => {
   render(){
     var date = new Date(this.props.content.date);
     return(
-      <div style = {{backgroundColor: '#fe7400', border: '1px', borderStyle: 'solid', paddingLeft: '3vw'}}>
+      <div style = {{backgroundColor: '#fe7400', border: '1px', borderStyle: 'solid', padding: '0vw 3vw 0vw 3vw'}}>
       <p style = {{padding: '0px', margin: '0px', fontFamily: 'Playfair Display'}}> {date.toLocaleString()} </p>
       <h2 style = {{padding: '10px,10px,10px,0px', margin: '0px',
        color: '#1d00fe', fontFamily: 'Playfair Display'}}> {this.props.content.title} </h2><br/>

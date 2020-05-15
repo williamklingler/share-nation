@@ -27,8 +27,8 @@ class Trending extends React.Component{
     // display: 'flex',
     // margin: 'auto', textAlign: 'center'
     return(
-      <div  style = {{backgroundColor: '#fe0000'}} >
-      <section style = {{backgroundColor: '#fe0000', color: '#1d00fe', fontFamily: 'Playfair Display',
+      <div  style = {{backgroundColor: 'pink'}} >
+      <section style = {{backgroundColor: 'pink', color: '#1d00fe', fontFamily: 'Playfair Display',
     paddingLeft: '5vw', height: '9.5vh', lineHeight:'8.5vh'}}>
     <h1 style = {{display: 'inline-block', verticalAlign: 'middle',
      lineHeight: 'normal', border: '1px', borderStyle: 'solid', padding: '1.5vh 20.5vh 1.5vh 10.5vh', margin: 0}}>

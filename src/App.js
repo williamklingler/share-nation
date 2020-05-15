@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-import LoginPage from './components/LoginPage.js'
-import HomePage from './components/HomePage.js'
-import SignedIn from './components/SignedIn.js'
+import LoginPage from './components/LoginPage.js';
+import HomePage from './components/HomePage.js';
+import SignedIn from './components/SignedIn.js';
+import Header from './components/Header.js'
 import {
   BrowserRouter as Router,
   Switch,
@@ -36,6 +37,8 @@ componentDidMount() {
   }
   render(){
     return (
+      <div>
+      <Header />
       <Router>
     <div>
       <Switch>
@@ -53,6 +56,7 @@ componentDidMount() {
       </Switch>
     </div>
   </Router>
+  </div>
     );
   }
 }
