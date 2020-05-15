@@ -11,7 +11,7 @@ class HomePage extends React.Component {
   render() {
     return (
       <div>
-      <h1> Welcome to Simp Nation </h1>
+      <h1> Welcome to Share Nation </h1>
       <p> we will fulfill all of your simping needs </p>
         <li>
             <Link to="/login">Login</Link>
